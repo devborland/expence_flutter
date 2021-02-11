@@ -49,20 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   amount: 20.63,
-    //   date: DateTime.now(),
-    //   id: 't2',
-    //   title: 'puma',
-    // ),
-    // Transaction(
-    //   amount: 18.48,
-    //   date: DateTime.now(),
-    //   id: 't2',
-    //   title: 'didibao',
-    // ),
-  ];
+  final List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions
@@ -76,10 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
         .toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
       title: txTitle,
     );
@@ -91,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(ctx) {
     showModalBottomSheet(
+        backgroundColor: Colors.grey.shade600,
         context: ctx,
         builder: (_) {
           return SingleChildScrollView(

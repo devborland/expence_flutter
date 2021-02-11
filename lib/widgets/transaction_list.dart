@@ -51,6 +51,10 @@ class TransactionList extends StatelessWidget {
                     subtitle: Text(
                       DateFormat.yMMMd().format(transactions[index].date),
                     ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {},
+                    ),
                   ),
                 );
                 // return Card(

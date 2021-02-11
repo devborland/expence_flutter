@@ -31,19 +31,23 @@ class ChartBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.grey,
-                    width: 2.0,
+                    width: 0.0,
                   ),
                   color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
               FractionallySizedBox(
                 alignment: Alignment.bottomCenter,
-                heightFactor: (spendingPctOfTotal < 0) ? 0 : spendingPctOfTotal,
+                heightFactor: spendingPctOfTotal < 0 ? 0 : spendingPctOfTotal,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 0.0,
+                    ),
                   ),
                 ),
               ),
