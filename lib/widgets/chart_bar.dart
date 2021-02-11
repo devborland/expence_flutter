@@ -14,8 +14,11 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(
-          child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
+        Container(
+          height: 12.0,
+          child: FittedBox(
+            child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
+          ),
         ),
         SizedBox(height: 4.0),
         Container(
@@ -48,7 +51,10 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4.0),
-        Text('wee'),
+        Text(
+          label,
+          style: TextStyle(color: Colors.grey.shade500),
+        ),
       ],
     );
   }
