@@ -20,8 +20,8 @@ void main() {
   runApp(MyApp());
 }
 
-// bool isIos = Platform.isIOS;
-bool isIos = true; // mock fake
+bool isIos = Platform.isIOS;
+// bool isIos = true; // mock fake
 
 class MyApp extends StatelessWidget {
   @override
