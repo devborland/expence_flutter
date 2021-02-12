@@ -1,4 +1,4 @@
-import 'package:expence_flutter/widgets/chart_bar.dart';
+import 'chart_bar.dart';
 
 import '../models/transaction.dart';
 import 'package:flutter/material.dart';
