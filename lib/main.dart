@@ -4,6 +4,7 @@ import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/transaction_list.dart';
 import 'widgets/chart.dart';
+import 'shop_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,13 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.purpleAccent,
+        primarySwatch: Colors.teal,
+        accentColor: Colors.teal,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
               headline6: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 20.0,
+                fontFamily: 'Quicksand',
+                fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -41,15 +42,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  // String titleInput;
-  // String amountInput;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [];
+  final List<Transaction> _userTransactions = shopList;
 
   List<Transaction> get _recentTransactions {
     return _userTransactions
@@ -88,10 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    final appBar = AppBar(
         title: Text(
           'Personal Expenses',
         ),
@@ -99,15 +102,27 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Icon(Icons.add_circle),
             onPressed: () => _startAddNewTransaction(context),
-          ),
-        ],
-      ),
+          )
+        ]);
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.25,
+                child: Chart(_recentTransactions)),
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.75,
+                child: TransactionList(_userTransactions, _deleteTransaction)),
           ],
         ),
       ),
