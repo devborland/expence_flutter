@@ -19,7 +19,9 @@ class TransactionList extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               Container(
-                height: 300.0,
+                height: (MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.4,
                 child: Image.asset(
                   'assets/images/waiting.png',
                   fit: BoxFit.cover,
@@ -31,7 +33,7 @@ class TransactionList extends StatelessWidget {
             itemCount: transactions.length,
             itemBuilder: (context, index) {
               return Card(
-                elevation: 4.0,
+                elevation: 3.0,
                 margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
                 child: ListTile(
                   leading: CircleAvatar(
@@ -50,50 +52,29 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
                   ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () => deleteTx(transactions[index].id),
-                  ),
+                  trailing: MediaQuery.of(context).size.width < 400
+                      ? IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.teal,
+                          ),
+                          onPressed: () => deleteTx(transactions[index].id),
+                        )
+                      : TextButton(
+                          onPressed: () => deleteTx(transactions[index].id),
+                          child: Container(
+                            width: 80.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text('Delete '),
+                                Icon(Icons.delete),
+                              ],
+                            ),
+                          ),
+                        ),
                 ),
               );
-              // return Card(
-              //   child: Row(
-              //     children: [
-              //       Container(
-              //         padding: EdgeInsets.all(8.0),
-              //         margin: EdgeInsets.symmetric(
-              //           vertical: 10.0,
-              //           horizontal: 15.0,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           border: Border.all(
-              //             color: Theme.of(context).primaryColor,
-              //             width: 2.0,
-              //           ),
-              //         ),
-              //         child: Text(
-              //           '\$${transactions[index].amount.toStringAsFixed(2)}',
-              //           style: TextStyle(
-              //             color: Theme.of(context).primaryColor,
-              //             fontSize: 20.0,
-              //           ),
-              //         ),
-              //       ),
-              //       Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: [
-              //           Text(transactions[index].title,
-              //               style: Theme.of(context).textTheme.headline6),
-              //           Text(
-              //             DateFormat.yMMMEd()
-              //                 .format(transactions[index].date),
-              //             style: TextStyle(color: Colors.grey),
-              //           ),
-              //         ],
-              //       )
-              //     ],
-              //   ),
-              // );
             },
           );
   }

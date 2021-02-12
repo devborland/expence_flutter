@@ -51,7 +51,7 @@ class _NewTransactionState extends State<NewTransaction> {
     return Card(
       elevation: 5.0,
       child: Container(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -70,7 +70,6 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => _submitData(),
             ),
             Container(
-              height: 70.0,
               child: Row(
                 children: [
                   Expanded(
