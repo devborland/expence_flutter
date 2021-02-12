@@ -16,7 +16,7 @@ class ChartBar extends StatelessWidget {
       return Column(
         children: [
           Container(
-            height: constrains.maxHeight * 0.15,
+            height: constrains.maxHeight * 0.12,
             child: FittedBox(
               child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
             ),
@@ -24,7 +24,7 @@ class ChartBar extends StatelessWidget {
           SizedBox(height: constrains.maxHeight * 0.05),
           Container(
             height: constrains.maxHeight * 0.6,
-            width: 10,
+            width: 15,
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
@@ -32,7 +32,7 @@ class ChartBar extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
-                      width: 0.0,
+                      width: 1.0,
                     ),
                     color: Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(8.0),
@@ -57,7 +57,7 @@ class ChartBar extends StatelessWidget {
           ),
           SizedBox(height: constrains.maxHeight * 0.05),
           Container(
-            height: constrains.maxHeight * 0.15,
+            height: constrains.maxHeight * 0.12,
             child: FittedBox(
               child: Text(
                 label,
