@@ -119,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   void _deleteTransaction(String id) {
     setState(() {
       _userTransactions.removeWhere((tx) => tx.id == id);
+      _recentTransactions.reversed;
     });
   }
 

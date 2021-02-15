@@ -34,6 +34,7 @@ class TransactionList extends StatelessWidget {
             itemCount: transactions.length,
             itemBuilder: (context, index) {
               return TransactionItem(
+                key: ValueKey(transactions[index].id),
                 transaction: transactions[index],
                 deleteTx: deleteTx,
               );
