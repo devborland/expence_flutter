@@ -1,40 +1,15 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class TransactionItem extends StatefulWidget {
-  const TransactionItem({
-    Key key,
+class TransactionItem extends StatelessWidget {
+  TransactionItem({
     @required this.transaction,
     @required this.deleteTx,
-  }) : super(key: key);
+  });
 
   final Transaction transaction;
   final Function deleteTx;
-
-  @override
-  _TransactionItemState createState() => _TransactionItemState();
-}
-
-class _TransactionItemState extends State<TransactionItem> {
-  Color _bgColor;
-  @override
-  void initState() {
-    const availableColors = [
-      Colors.redAccent,
-      Colors.black,
-      Colors.blue,
-      Colors.teal,
-      Colors.amber,
-      Colors.green,
-      Colors.purple,
-    ];
-    _bgColor = availableColors[Random().nextInt(availableColors.length)];
-    print(widget);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,21 +18,21 @@ class _TransactionItemState extends State<TransactionItem> {
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: _bgColor,
+          backgroundColor: transaction.color,
           radius: 30.0,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: FittedBox(
-              child: Text('\$${widget.transaction.amount}'),
+              child: Text('\$${transaction.amount}'),
             ),
           ),
         ),
         title: Text(
-          widget.transaction.title,
+          transaction.title,
           style: Theme.of(context).textTheme.headline6,
         ),
         subtitle: Text(
-          DateFormat.yMMMd().format(widget.transaction.date),
+          DateFormat.yMMMd().format(transaction.date),
         ),
         trailing: MediaQuery.of(context).size.width < 400
             ? IconButton(
@@ -65,10 +40,10 @@ class _TransactionItemState extends State<TransactionItem> {
                   Icons.delete,
                   color: Colors.teal,
                 ),
-                onPressed: () => widget.deleteTx(widget.transaction.id),
+                onPressed: () => deleteTx(transaction.id),
               )
             : TextButton(
-                onPressed: () => widget.deleteTx(widget.transaction.id),
+                onPressed: () => deleteTx(transaction.id),
                 child: Container(
                   width: 80.0,
                   child: Row(
